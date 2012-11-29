@@ -260,9 +260,11 @@ my $code = $response->code();
 my $content = $response->content();
 my $value;
 my $passthrough = 0;
-
+my $simple = 0;
 my $end = gettimeofday();
 my $delta = ($end - $start);
+
+
 
 if (looks_like_number($content)) {
         $value = $content;
@@ -278,10 +280,38 @@ if ($content =~ m/$re/)
 {
  $value = $content;
  $value =~ s/\R//g;
-
  $passthrough = 1;
  #print "\nMatch Regex\n";
 }
+else
+{
+  if (looks_like_number($content))
+  {
+   $value = $content;
+   $value =~ s/\R//g;
+   $value=" value=".$value.";;;0";
+    #print "looks line number \n";
+  }
+  else
+  {
+   if($content =~ m/(OK)/g)
+   {
+     print "Status: OK (Found OK) |time=$delta" . "s;;;0\n";
+     my $state = "OK";
+     exit $ERRORS{$state};
+   }
+   else
+   {
+    print "Status: Critical\n".$content. "\n";
+    my $state = "CRITICAL";
+    exit $ERRORS{$state};
+   }
+
+  }
+}
+
+
+
 
 
 #i Critical?
