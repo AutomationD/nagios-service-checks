@@ -1,7 +1,8 @@
-#!/usr/bin/perl
-## check_http.pl
-## Copyright (c) 2008, Oliver Wittenburg  <oliver@wiburg.de>
-##
+mv che	#!/usr/bin/perl
+## check_status_via_http.pl
+## Copyright (c) 2012, Dmitry Kireev <dmitry@kireev.co>
+## Based on Oliver Wittenburg's  <oliver@wiburg.de> code
+## 
 ## This program is free software: you can redistribute it and/or modify it under
 ## the terms of the GNU General Public License as published by the Free Software
 ## Foundation, either version 3 of the License, or (at your option) any later
